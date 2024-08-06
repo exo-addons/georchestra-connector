@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.exoplatform.addons.georchestra</groupId>
+    <artifactId>georchestra-parent</artifactId>
+    <version>1.0.x-SNAPSHOT</version>
+  </parent>
+  <artifactId>georchestra-webapp</artifactId>
+  <packaging>war</packaging>
+  <name>Georchestra Webapp</name>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+          <include>**/*.drl</include>
+          <include>**/*.doc</include>
+          <include>**/*.xls</include>
+          <include>**/*.ppt</include>
+          <include>**/*.txt</include>
+          <include>**/*.jar</include>
+          <include>**/*.pom</include>
+          <include>**/*.sha1</include>
+          <include>**/*.conf</include>
+          <include>**/*.gtmpl</include>
+          <include>**/*.gif</include>
+          <include>**/*.jpg</include>
+          <include>**/*.png</include>
+        </includes>
+      </resource>
+    </resources>
+    <finalName>georchestra</finalName>
+    <plugins>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <packagingExcludes>**/*.less,**/*.vue,css/lib/*,vue-apps/**,js/mock/**/*,**-dev.*</packagingExcludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
