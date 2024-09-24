@@ -24,7 +24,7 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <exo.version>6.5.x-exo-SNAPSHOT</exo.version>
+    <exo.version>6.5.4-exo</exo.version>
   </properties>
   <dependencyManagement>
     <dependencies>
