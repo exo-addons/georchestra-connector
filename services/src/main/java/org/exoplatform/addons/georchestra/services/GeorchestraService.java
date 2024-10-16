@@ -235,8 +235,10 @@ public class GeorchestraService {
   }
 
   public boolean addUserInSpacesByRole(String username, String role) {
+    LOG.debug("Try to add user {} in spaces with role {}",username,role);
     Identity userIdentity = identityManager.getOrCreateUserIdentity(username);
     if (userIdentity == null) {
+      LOG.debug("User {} not found in eXo", username);
       return false;
     }
 
@@ -244,6 +246,7 @@ public class GeorchestraService {
     results.forEach(settingsEntity -> {
       String spaceId = settingsEntity.getScope().getName();
       Space space = spaceService.getSpaceById(spaceId);
+      LOG.debug("Add user {} as member of space {}", username, space.getDisplayName());
       spaceService.addMember(space,username);
     });
     return true;

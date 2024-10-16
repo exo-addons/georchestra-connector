@@ -17,11 +17,15 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
 @Path("/georchestra")
 public class GeorchestraRestService implements ResourceContainer {
   private GeorchestraService georchestraService;
   private SpaceService spaceService;
+
+  private static final Log LOG = ExoLogger.getLogger(GeorchestraRestService.class);
+
 
   public GeorchestraRestService(GeorchestraService georchestraService, SpaceService spaceService) {
     this.georchestraService = georchestraService;
@@ -36,6 +40,7 @@ public class GeorchestraRestService implements ResourceContainer {
   @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Request fulfilled"),
       @ApiResponse(responseCode = "500", description = "Internal server error") })
   public Response addUserInSpacesByRole(@RequestBody(description = "Parameters to apply", required = true) GeorchestraRestParameter parameter) {
+    LOG.debug("Receive POST on /georchestra with data = {}", parameter);
     if (georchestraService.addUserInSpacesByRole(parameter.getUsername(),parameter.getRole())) {
       return Response.ok().build();
     } else {
